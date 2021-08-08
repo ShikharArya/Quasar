@@ -1,0 +1,207 @@
+{% load static %}
+<!DOCTYPE html>
+<head>
+    <meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Quasar</title>
+    <style>
+        .search_1 {
+			display: flex;
+			justify-content: right;
+			height: 40px;
+			padding-right: 50px;
+			margin-left:10px;
+		}
+
+		#search-text {
+			border-radius: 20px;
+			margin-right: 20px;
+			width: 500px;
+			float: right;
+			padding-left: 1.5%;
+			background-color: white;
+			color: #1c6ea4;
+			padding-left: 30px;
+		}
+
+		#search-button {
+			border-radius: 20px;
+			padding: 10px 30px;
+			color: #002188;
+			background-color: #7ab4eb;
+			border: 2px solid rgb(202, 202, 202);
+		}
+
+		#search-button:hover {
+			color: #e6e6f0;
+			background-color: #002188;
+			border: 2px solid white;
+		}
+
+        .header {
+            height: 200px;
+            width: 100%;
+            margin-top:0px;
+        }
+
+        .search_result {
+            height:100px;
+            width: 600px;
+            margin-right:300px;
+            margin-left:600px;
+            margin-top:0px;
+            margin-bottom:50px;
+        }
+
+		* {
+			box-sizing: border-box;
+		}
+
+        .wrapper {
+            width:100%;
+            display: grid;
+            grid-template-columns: 100px 100px;
+            grid-gap: 10px;
+            grid-auto-rows: minmax(250 px, auto);
+        }
+
+        .one {
+            grid-row: 1;
+            grid-column: 1;
+        }
+
+        .two {
+            grid-row:1;
+            grid-column:2/4;
+        }
+
+		.row {
+			background-color: #e6e6f0;
+			color: #002188;
+			margin: 10px;
+		}
+
+		.column {
+			float: left;
+			width: 33.33%;
+			padding: 15px;
+		}
+	
+		.row:after {
+			content: "";
+			display: table;
+			clear: both;
+		}
+
+		.col-25 {
+			float: left;
+			width: 25%;
+			margin-top: 6px;
+		}
+
+		.col-50 {
+			float: left;
+			width: 50%;
+			margin-top: 6px;
+		}
+
+		.col-75 {
+			float: left;
+			width: 75%;
+			margin-top: 6px;
+		}
+
+		input, select, textarea {
+			width: 100%;
+			padding: 12px;
+			border: 1px solid #002188;
+			border-radius: 20px;
+			resize: vertical;
+		}
+
+		input:hover, select:hover, textarea:hover {
+			border: 2px solid #002188;	
+		}
+
+		label,p {
+			padding: 12px 12px 12px 0;
+			display: inline-block;
+			color: #002188;
+			font-size: large;
+			font-weight: bold;
+		}
+
+		input[type=submit] {
+			background-color: #002188;
+			color: #e6e6f0;
+			padding: 12px 20px;
+			border-radius: 20px;
+			cursor: pointer;
+			float: right;
+			width: 150px;
+		}
+
+		input[type=submit]:hover {
+			background-color: #e6e6f0;
+			color: #002188;
+			border: 1px solid #002188;
+		}
+
+		a {
+			color: #b36b00;
+			margin-left:50px;
+			font-family:Verdana, Tahoma, sans-serif;
+		}
+
+		span {
+			margin-left:50px;
+			font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Open Sans', 'Helvetica Neue', sans-serif;
+		}
+
+		@media screen and (max-width:600px) {
+			.column {
+				width: 100%;
+			}
+
+			.col-25, .col-75, .col-50 {
+					width: 100%;
+					margin-top: 0;
+			}
+
+			input[type=submit] {
+					width: 100%;
+					margin: 10px;
+			}
+		}
+
+    </style>
+</head>
+
+
+
+<div class="header">
+    <div class="wrapper">
+        <div class="one">    
+            <img src="{% static 'Images/Quasar_Logo_1.png' %}" width="100" height="50">
+        </div>
+        <div class="two">
+            <form method="post">
+				{% csrf_token %}
+                <div class="search_1">
+                    <input type="text" placeholder="Search.." id="search-text" name="query">
+                    <input type="submit" id="search-button" name="Search" value="Search">
+                </div>
+			</form>
+			<h3 style="margin-left:0px;color:#002188;font-family:Verdana, Tahoma, sans-serif;">Loaded results in {{ time_taken }} seconds</h3>
+		</div> 
+
+		<div>
+			
+			{% for result in titles %}
+				<h3 style="color:#fca400"><a href="/text/{{result.2}}/">{{result.0}}</a>  <span>(Score:{{ result.1 }})</span></h3>
+			{% endfor %}
+		</div>
+    </div>
+</div>
+
+</html>

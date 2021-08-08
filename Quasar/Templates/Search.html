@@ -1,0 +1,172 @@
+{% load static %}
+<!DOCTYPE html>
+<head>
+    <meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Quasar</title>
+    <style>
+        .search_1 {
+			display: flex;
+			justify-content: right;
+			height: 50px;
+			padding-right: 50px;
+			margin-bottom:20px;
+		}
+
+		#search-text {
+			border-radius: 20px;
+			margin-right: 20px;
+			width: 700px;
+			float: right;
+			padding-left: 1.5%;
+			background-color: white;
+			color: #1c6ea4;
+			padding-left: 30px;
+		}
+
+		#search-button {
+			border-radius: 20px;
+			padding: 10px 30px;
+			color: #002188;
+			background-color: #7ab4eb;
+			border: 2px solid white;
+		}
+
+		#search-button:hover {
+			color: #e6e6f0;
+			background-color: #002188;
+			border: 2px solid white;
+		}
+
+        .container {
+            height: 200px;
+            width: 900px;
+            margin-right:300px;
+            margin-left:25%;
+            margin-top:0px;
+            margin-bottom:200px;
+        }
+
+        .search_result {
+            height:100px;
+            width: 600px;
+            margin-right:300px;
+            margin-left:600px;
+            margin-top:0px;
+            margin-bottom:50px;
+        }
+
+		* {
+			box-sizing: border-box;
+		}
+
+		.row {
+			background-color: #e6e6f0;
+			color: #002188;
+			margin: 10px;
+		}
+
+		.column {
+			float: left;
+			width: 33.33%;
+			padding: 15px;
+		}
+	
+		.row:after {
+			content: "";
+			display: table;
+			clear: both;
+		}
+
+		.col-25 {
+			float: left;
+			width: 25%;
+			margin-top: 6px;
+		}
+
+		.col-50 {
+			float: left;
+			width: 50%;
+			margin-top: 6px;
+		}
+
+		.col-75 {
+			float: left;
+			width: 75%;
+			margin-top: 6px;
+		}
+
+		input, select, textarea {
+			width: 100%;
+			padding: 12px;
+			border: 1px solid #002188;
+			border-radius: 4px;
+			resize: vertical;
+		}
+
+		input:hover, select:hover, textarea:hover {
+			border: 2px solid #002188;	
+		}
+
+		label,p {
+			padding: 12px 12px 12px 0;
+			display: inline-block;
+			color: #002188;
+			font-size: large;
+			font-weight: bold;
+		}
+
+		input[type=submit] {
+			background-color: #002188;
+			color: #e6e6f0;
+			padding: 12px 20px;
+			border: none;
+			border-radius: 4px;
+			cursor: pointer;
+			float: right;
+			width: 150px;
+		}
+
+		input[type=submit]:hover {
+			background-color: #e6e6f0;
+			color: #002188;
+			border: 1px solid #002188;
+		}
+
+		@media screen and (max-width:600px) {
+			.column {
+				width: 100%;
+			}
+
+			.col-25, .col-75, .col-50 {
+					width: 100%;
+					margin-top: 0;
+			}
+
+			input[type=submit] {
+					width: 100%;
+					margin: 10px;
+			}
+		}
+
+    </style>
+
+
+</head>
+
+<div class="container">
+	<img src="{% static 'Images/Quasar_Logo_1.png' %}" width="800" height="500">
+	<h2 style="text-align:center; margin-right:100px;font-family: fantasy; color:#f79708">THE COSMIC SEARCH ENGINE</h2>
+    <form method="post">
+		{% csrf_token %}
+        <div class="search_1">
+            <input type="text" placeholder="Search.." id="search-text" name="query">
+            <input type="submit" id="search-button" name="Search" value="Search">
+        </div>
+    </form>
+   
+</div>
+
+</div> 
+
+</html>
